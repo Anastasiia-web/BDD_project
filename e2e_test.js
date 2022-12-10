@@ -1,3 +1,5 @@
+const LoginPage = require("./pages/LoginPage");
+
 Feature('Zero Bank Application - E2E Tests');
 
 Before(({ I }) => {
@@ -9,14 +11,24 @@ After(({ I }) => {
     console.log('After hook')
 })
 
-Scenario('Login Test - Negative', ({ I }) => {
+Scenario('Login Test - Negative', ({ I, LoginPage }) => {
     I.click('#signin_button')
-    I.see('Log in to ZeroBank')
-    I.fillField('#user_login', 'invalid user')
-    I.fillField('#user_password', 'invalid password')
-    I.click('Sign in')
+    LoginPage.assertLoginFormIsVisible()
+    LoginPage.submitLogin('invalid user', 'invalid password')
     I.seeElement('.alert-error')
 });
 
 
 // npx codeceptjs run e2e_test.js                      => to run this file only
+
+
+// test before using Page Object Model
+
+// Scenario('Login Test - Negative', ({ I }) => {
+//     I.click('#signin_button')
+//     I.see('Log in to ZeroBank')
+//     I.fillField('#user_login', 'invalid user')
+//     I.fillField('#user_password', 'invalid password')
+//     I.click('Sign in')
+//     I.seeElement('.alert-error')
+// });
