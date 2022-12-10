@@ -1,3 +1,5 @@
+const { is } = require("express/lib/request");
+
 Feature('My Test Suite');
 
 Scenario('Should load example.com website', ({ I }) => {
@@ -20,3 +22,19 @@ Scenario('Should have header', ({ I }) => {
 
 
 // npx codeceptjs run
+
+// if in "scripts" in "package.json" file instead of:
+
+// "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1"
+// }
+
+// is
+
+// "scripts": {
+//     "test": "codeceptjs run",
+//     "e2e": "codeceptjs run e2e_test.js"
+//     "example": "codeceptjs run example_test.js"
+// }
+
+// simply run "npm run test" / "npm run e2e" / "npm run example"
